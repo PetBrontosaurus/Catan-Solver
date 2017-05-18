@@ -1,0 +1,56 @@
+How to figure out if setters of catan is solved:
+
+
+def: list of items (1, 2, 3, 4, 5) --> Sheep, Wood, Wheat, Brick, Stone
+def: victory point goal = 10
+def: victory point current = 9
+
+def: 2-1 port as (List(A, B) --> List(C))
+
+def: city --> 3 rock, 2 wheat
+
+given List(rock, rock, rock, wheat, sheep, sheep), can you buy a city?
+
+Define list function:
+
+1) Given a list (a, a, b), produce (A, b)
+
+Recursive solution:
+
+termination condition: (Empty list --> return empty list)
+termination condition: (a, b) --> Return (a, b)
+termination condition: (a, b, c, d, e) --> Return (a, b, c, d, e)
+success condition: (a, a) --> (A)
+success condition: (a, b, a) --> (A, b)
+success condition: (a, a, b, b) --> (A, b, b)
+
+so code for checking is -->
+	member(X, [a, b, c...],
+	x.deleteTwo(X, [a,b,c], Y)
+	y.append(Z)
+	
+	
+
+
+delete_one(_, [], []).
+delete_one(Term, [Term|Tail], Tail).
+delete_one(Term, [Head|Tail], [Head|Result]) :-
+  delete_one(Term, Tail, Result)
+
+  
+  
+
+  
+
+delete_two(_, [], []).
+delete_two(Term, [Term, Term|Tail], Tail).
+delete_two(Term, [Head|Tail], Result) :-
+  delete_one(Term, [Head|Tail], X),
+  delete_one(Term, X, Result).
+  
+
+
+Else --> Return 
+
+
+
