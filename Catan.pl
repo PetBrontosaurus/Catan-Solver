@@ -5,12 +5,23 @@ card(wheat).
 card(sheep).
 
 
+%card(X) :- 
+%  X = sheep;
+%  X = wheat;
+%  X = wood;
+%  X = brick;
+%  X = stone.
 
 
 
-pushCard([List], [Result|List]) :- 
-  Result is card(_).   
+
+pushCard(List, OutList) :- 
+  card(X),
+  OutList = [X | List].   
   
+  
+
+
 
 %from stackoverflow - https://stackoverflow.com/questions/15857382/removing-first-occurrence-in-list-prolog.
 %delete_one(_, [], []).
@@ -34,22 +45,14 @@ delete_two(Term, [Head|Tail], Result) :-
 %        append([card(X)], [ResultOfSheepPort], Result). 
 
 
-sheep_port(QueryVar, [InList]) :-
-    card(QueryVar),
-    delete_two(sheep, InList, InList],
-    InList = [QueryVar | InList].
 
 
 
 
-
-
-
-
-
-
-
-
+sheep_port_single(InList, OutList) :-
+  delete_two(sheep, InList, ShorterList),
+  pushCard(ShorterList, LongerList),
+  OutList = LongerList.
 
 
 
